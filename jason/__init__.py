@@ -11,6 +11,7 @@ def response(data={}, status=200, message='OK'):
 
     Example::
         import jason
+        
         def my_view(request):
             return jason.response({'weight': 80}, 200, 'OK')
     """
@@ -41,12 +42,13 @@ def view(allowed_methods, exceptions={}):
     the response() function.
 
     Example::
+        import jason
 
         @jason.view(allowed_methods=['GET', 'POST'], exceptions={
             WebFault: lambda e: ({}, 400, e.message, )
         })
         def my_view(request):
-            ...
+            return {'numbers': 42, 43, 44},
     """
     def _(f):
         def __(request, *args, **kwargs):
@@ -73,6 +75,7 @@ def permission_required(perm):
     Example::
 
         import jason
+
         @jason.permission_required("my_perm")
         def my_view(request):
             ...
@@ -93,11 +96,12 @@ class Bail(Exception):
     arguments to the Bail class expanded with json_response().
 
     Example::
+        import jason
 
         @jason.view(allowed_methods=['GET'])
         def my_view(request):
             if not_to_my_liking():
-                raise Bail({}, 400, 'Do not like!')
+                raise jason.Bail({}, 400, 'Do not like!')
     """
     def __init__(self, *args):
         self.args = args
