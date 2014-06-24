@@ -10,6 +10,6 @@ setup(
     url='https://github.com/runekaagaard/jason',
     license='GPLv2',
     description='Lightweight helpers for views returning json data in Django.' ,
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     zip_safe=False,
 )
