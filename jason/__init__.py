@@ -11,7 +11,7 @@ def response(data={}, status=200, message='OK'):
 
     Example::
         import jason
-        
+
         def my_view(request):
             return jason.response({'weight': 80}, 200, 'OK')
     """
