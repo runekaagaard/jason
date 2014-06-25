@@ -1,15 +1,26 @@
 import simplejson
+
 from django.http import HttpResponse
 from django.core import serializers
 
+__all__ = ('response', 'view', 'permission_required', 'Bail')
 
 def response(data={}, status=200, message='OK'):
     """
-    Returns a HttpResponse class with json mimetype.
+    Wraps the arguments in a dictionary and returns a HttpResponse object with
+    the HTTP status set to ``status``. The body of the response is JSON data
+    on the format::
 
-    The data dictionary is serialized using the DjangoJSONEncoder class.
+        {
+            "status": 400,
+            "message": "OK",
+            "data": {"ids": [1, 2, 3]}
+        }
+
+    The content of ``data`` is serialized using the DjangoJSONEncoder class.
 
     Example::
+
         import jason
 
         def my_view(request):
@@ -27,21 +38,22 @@ def response(data={}, status=200, message='OK'):
 
 def view(allowed_methods, exceptions={}):
     """
-    Decorates a Django function based view which in turn should return a
-    tuple or list of length 0 to 3 matching the signature of response().
+    Decorates a Django function based view and wraps it's return in the
+    :py:func:`jason.response` function. The view should return a list or tuple which is
+    unpacked using the ``*``-operator into :py:func:`jason.response`.
 
-    The view is also allow to raise a Bail() Exception.
+    The view can raise a :py:class:`jason.Bail` Exception.
 
-    "allowed_methods" lists which HTTP methods are allowed,
+    ``allowed_methods`` lists which HTTP methods are allowed,
     e.g. ['GET', 'POST'].
 
-    "exceptions" is a dictionary that defines what happens when exceptions are
-    thrown inside the wrapped function. The keys are Exception classes and
-    values are callables. The callables will be called with the exception as
-    the first parameter and should return a tuple or list that fits with
-    the response() function.
+    ``exceptions`` is a dictionary where the keys are ``Exception`` classes and
+    values are callables. It defines responses for raised Exceptions other than
+    the :py:class:`jason.Bail` Exception. The callable should return a tuple or list
+    that can unpacked into :py:func:`jason.response`.
 
     Example::
+
         import jason
 
         @jason.view(allowed_methods=['GET', 'POST'], exceptions={
@@ -57,7 +69,7 @@ def view(allowed_methods, exceptions={}):
             try:
                 return response(*f(request, *args, **kwargs))
             except Bail as e:
-                return response(*e.args)
+                return response(e.data, e.status, e.message)
             except Exception as e:
                 if e.__class__ in exceptions:
                     return response(*exceptions[e.__class__](e))
@@ -70,7 +82,14 @@ def view(allowed_methods, exceptions={}):
 def permission_required(perm):
     """
     A json pendant to permission_required. Will return a 401 response if
-    the user is not allowed.
+    the user is not allowed. The body of the response will be the following json
+    data::
+
+        {
+            "status": 401,
+            "message": "Unauthorized",
+            "data": {}
+        }
 
     Example::
 
@@ -92,10 +111,12 @@ def permission_required(perm):
 
 class Bail(Exception):
     """
-    If raised inside a view wrapped in json.view, the return will be the
-    arguments to the Bail class expanded with json_response().
+    This exception can be raised inside a view decorated by :py:func:`jason.view`. The
+    arguments are the same as to :py:func:`jason.response`. When raised the return
+    of the view will be the output of the :py:func:`jason.response` function.
 
     Example::
+
         import jason
 
         @jason.view(allowed_methods=['GET'])
@@ -103,5 +124,7 @@ class Bail(Exception):
             if not_to_my_liking():
                 raise jason.Bail({}, 400, 'Do not like!')
     """
-    def __init__(self, *args):
-        self.args = args
+    def __init__(self, data={}, status=400, message='Bad Request'):
+        self.data = data
+        self.status = status
+        self.message = message
