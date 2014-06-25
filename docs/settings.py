@@ -14,3 +14,5 @@ DATABASES = {"default": {
     "PASSWORD": '',
     "PORT": '',
 }}
+
+SECRET_KEY = "UHH"
