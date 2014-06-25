@@ -10,7 +10,7 @@ except:
 
 setup(
     name='jason',
-    version='0.1.6',
+    version='0.1.7',
     author=u'Rune Kaagaard',
     author_email='rumi.kg@gmail.com',
     packages=find_packages(),
