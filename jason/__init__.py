@@ -60,7 +60,7 @@ def view(allowed_methods, exceptions={}):
             WebFault: lambda e: ({}, 400, e.message, )
         })
         def my_view(request):
-            return {'numbers': 42, 43, 44},
+            return {'numbers': get_numbers()},
     """
     def _(f):
         def __(request, *args, **kwargs):
@@ -123,6 +123,8 @@ class Bail(Exception):
         def my_view(request):
             if not_to_my_liking():
                 raise jason.Bail({}, 400, 'Do not like!')
+
+            ...
     """
     def __init__(self, data={}, status=400, message='Bad Request'):
         self.data = data
