@@ -214,3 +214,6 @@ man_pages = [
     ('index', 'jason', u'jason Documentation',
      [u'Rune Kaagaard'], 1)
 ]
+
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
