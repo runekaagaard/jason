@@ -2,7 +2,7 @@
    :target: https://travis-ci.org/runekaagaard/jason/
    :alt: Build status
    
-.. image:: http://img.shields.io/badge/readthedocs-OK-green.svg   
+.. image:: http://img.shields.io/badge/readthedocs-ok-green.svg   
    :target: http://jason.readthedocs.org/
    :alt: Read The Docs
    
