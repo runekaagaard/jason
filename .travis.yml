@@ -1,5 +1,5 @@
 language: python
-install: pip install tox pytest coveralls --use-mirrors
+install: pip install tox pytest pytest-cov coveralls --use-mirrors
 script: tox
 
 # Disable SSL (Python 2.5 does not have "ssl" module).
