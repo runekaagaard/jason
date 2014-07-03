@@ -15,7 +15,7 @@
     :alt: Latest Version
 
 .. image:: https://pypip.in/license/jason/badge.png
-    :target: https://pypi.python.org/pypi/jason/
+    :target: https://github.com/runekaagaard/jason/blob/master/LICENSE
     :alt: License
 
 
