@@ -2,6 +2,10 @@
    :target: https://travis-ci.org/runekaagaard/jason/
    :alt: Build status
    
+.. image:: http://img.shields.io/badge/readthedocs-OK-green.svg   
+   :target: http://jason.readthedocs.org/
+   :alt: Read The Docs
+   
 .. image:: https://pypip.in/download/jason/badge.png
     :target: https://pypi.python.org/pypi/jason/
     :alt: Downloads
@@ -20,4 +24,4 @@ About jason
 
 Lightweight helpers for views returning json data in Django.
 
-There are currently no tests. Not recommended for production.
+API still in flux. Not recommended for production.
