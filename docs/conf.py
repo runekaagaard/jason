@@ -225,7 +225,7 @@ man_pages = [
 #    settings = __import__(os.environ["DJANGO_SETTINGS_MODULE"])
 #    setup_environ(settings)
 
-html_theme = 'default'
+html_theme = 'nature'
 
 import sys, os
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
