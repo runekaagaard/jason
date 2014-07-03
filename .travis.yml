@@ -1,6 +1,8 @@
 language: python
-install: pip install tox pytest pytest-cov --use-mirrors
-script: tox
+install: pip install tox pytest coveralls --use-mirrors
+script: coverage run --source=jason tox
+after_success:
+  coveralls
 
 # Disable SSL (Python 2.5 does not have "ssl" module).
 env: PIP_INSECURE=true
