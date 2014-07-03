@@ -215,12 +215,20 @@ man_pages = [
      [u'Rune Kaagaard'], 1)
 ]
 
-import sys, os
+#import sys, os
 
-sys.path.append(os.path.dirname(__file__))
-import django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-if django.VERSION < (1, 4):
-    from django.core.management import setup_environ
-    settings = __import__(os.environ["DJANGO_SETTINGS_MODULE"])
-    setup_environ(settings)
+#sys.path.append(os.path.dirname(__file__))
+#import django
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+#if django.VERSION < (1, 4):
+#    from django.core.management import setup_environ
+#    settings = __import__(os.environ["DJANGO_SETTINGS_MODULE"])
+#    setup_environ(settings)
+
+html_theme = 'default'
+
+import sys, os
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+from django.conf import settings
+settings.configure()

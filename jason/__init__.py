@@ -1,7 +1,7 @@
-import simplejson
+import json
 
 from django.http import HttpResponse
-from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
 
 __all__ = ('response', 'view', 'permission_required', 'Bail')
 
@@ -31,8 +31,8 @@ def response(data={}, status=200, message='OK'):
         'status': status,
         'message': message,
     }
-    content = simplejson.dumps(response_data, ensure_ascii=False,
-                               cls=serializers.json.DjangoJSONEncoder)
+    content = json.dumps(response_data, ensure_ascii=False,
+                               cls=DjangoJSONEncoder)
     return HttpResponse(content, status=status, content_type='application/json')
 
 
