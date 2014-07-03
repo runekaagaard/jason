@@ -1,7 +1,11 @@
 .. image:: https://travis-ci.org/runekaagaard/jason.svg?branch=master   
    :target: https://travis-ci.org/runekaagaard/jason/
    :alt: Build status
-   
+
+.. image:: https://img.shields.io/coveralls/runekaagaard/jason.svg   
+   :target: https://coveralls.io/r/runekaagaard/jason?branch=master
+   :alt: Coverage Status
+
 .. image:: http://img.shields.io/badge/readthedocs-ok-green.svg   
    :target: http://jason.readthedocs.org/
    :alt: Read The Docs
