@@ -6,7 +6,7 @@
    :target: https://coveralls.io/r/runekaagaard/jason?branch=master
    :alt: Coverage Status
 
-.. image:: http://img.shields.io/badge/readthedocs-ok-green.svg   
+.. image:: http://img.shields.io/badge/readthedocs-go-green.svg   
    :target: http://jason.readthedocs.org/
    :alt: Read The Docs
    
