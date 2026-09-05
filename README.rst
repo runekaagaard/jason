@@ -10,15 +10,15 @@
    :target: http://jason.readthedocs.org/
    :alt: Read The Docs
    
-.. image:: https://pypip.in/download/jason/badge.png
+.. image:: https://img.shields.io/pypi/dm/jason.svg
     :target: https://pypi.python.org/pypi/jason/
     :alt: Downloads
 
-.. image:: https://pypip.in/version/jason/badge.png
+.. image:: https://img.shields.io/pypi/v/jason.svg
     :target: https://pypi.python.org/pypi/jason/
     :alt: Latest Version
 
-.. image:: https://pypip.in/license/jason/badge.png
+.. image:: https://img.shields.io/pypi/l/jason.svg
     :target: https://github.com/runekaagaard/jason/blob/master/LICENSE
     :alt: License
 
